@@ -5,10 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import java.time.LocalDateTime;
 
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 @Entity
@@ -22,9 +18,9 @@ public class Student {
     private String email;
     // Hibernate will automatically take the
     // current Timestamp of the JVM
-    @CreationTimestamp
+    /*@CreationTimestamp
     private LocalDateTime creationDate;
     @UpdateTimestamp
     private LocalDateTime lastUpdate;
-    private boolean isActive = true;
+    private boolean isActive = true;*/
 }
