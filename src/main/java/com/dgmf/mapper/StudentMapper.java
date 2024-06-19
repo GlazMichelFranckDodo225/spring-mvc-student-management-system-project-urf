@@ -2,20 +2,27 @@ package com.dgmf.mapper;
 
 import com.dgmf.dto.StudentDto;
 import com.dgmf.entity.Student;
-import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
-import org.springframework.stereotype.Component;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
-@Component
-@RequiredArgsConstructor
+@Data @AllArgsConstructor @Builder
 public class StudentMapper {
-    private final ModelMapper modelMapper;
-
-    public StudentDto mapToStudentDto(Student student) {
-        return modelMapper.map(student, StudentDto.class);
+    public static StudentDto mapToStudentDto(Student student) {
+        return StudentDto.builder()
+                .id(student.getId())
+                .firstName(student.getFirstName())
+                .lastName(student.getLastName())
+                .email(student.getEmail())
+                .build();
     }
 
-    public Student mapToStudent(StudentDto studentDto) {
-        return modelMapper.map(studentDto, Student.class);
+    public static Student mapToStudent(StudentDto studentDto) {
+        return Student.builder()
+                .id(studentDto.getId())
+                .firstName(studentDto.getFirstName())
+                .lastName(studentDto.getLastName())
+                .email(studentDto.getEmail())
+                .build();
     }
 }

@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequiredArgsConstructor
@@ -29,6 +31,14 @@ public class StudentController {
         model.addAttribute("student", studentDto);
 
         return "create_student";
+    }
+
+    // Handler Method for Save Student Form Submit Request
+    @PostMapping("/students")
+    public String saveStudent(@ModelAttribute("student") StudentDto student) {
+        studentService.createStudent(student);
+
+        return "redirect:/students";
     }
 
 }
