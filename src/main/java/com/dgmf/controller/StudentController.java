@@ -1,5 +1,6 @@
 package com.dgmf.controller;
 
+import com.dgmf.dto.StudentDto;
 import com.dgmf.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,17 @@ public class StudentController {
         model.addAttribute("students", studentService.getAllStudents());
 
         return "students";
+    }
+
+    // Handler Method for Create New Student Request
+    @GetMapping("/students/new")
+    public String newStudent(Model model) {
+        // Student Model Object to Store Student Form Data
+        StudentDto studentDto = new StudentDto();
+
+        model.addAttribute("student", studentDto);
+
+        return "create_student";
     }
 
 }
