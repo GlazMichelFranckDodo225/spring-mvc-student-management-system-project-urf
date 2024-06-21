@@ -54,7 +54,7 @@ public class StudentController {
 
         // If there is not Any Error ==> Save Student
         studentService.createStudent(student);
-        
+
         // Return the List Students Page
         return "redirect:/students";
     }
