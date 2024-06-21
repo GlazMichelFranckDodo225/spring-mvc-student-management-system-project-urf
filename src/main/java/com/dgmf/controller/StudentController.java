@@ -2,6 +2,7 @@ package com.dgmf.controller;
 
 import com.dgmf.dto.StudentDto;
 import com.dgmf.service.StudentService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +36,7 @@ public class StudentController {
 
     // Handler Method for Save Student Form Submit Request
     @PostMapping("/students")
-    public String saveStudent(@ModelAttribute("student") StudentDto student) {
+    public String saveStudent(@Valid @ModelAttribute("student") StudentDto student) {
         studentService.createStudent(student);
 
         return "redirect:/students";
