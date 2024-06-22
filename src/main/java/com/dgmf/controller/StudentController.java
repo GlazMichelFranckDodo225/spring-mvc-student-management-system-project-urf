@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -59,4 +60,12 @@ public class StudentController {
         return "redirect:/students";
     }
 
+    // Handler Method for Edit Student Request
+    @GetMapping("/students/{studentId}/edit")
+    public String editStudent(@PathVariable("studentId") Long studentId, Model model) {
+        StudentDto student = studentService.getStudentById(studentId);
+        model.addAttribute("student", student);
+
+        return "edit_student";
+    }
 }
