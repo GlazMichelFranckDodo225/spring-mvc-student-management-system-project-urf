@@ -52,7 +52,7 @@ public class StudentController {
             return "create_student";
         }
 
-        // If there is not Any Error ==> Save Student
+        // If there is no Any Error ==> Save Student
         studentService.createStudent(student);
 
         // Return the List Students Page
