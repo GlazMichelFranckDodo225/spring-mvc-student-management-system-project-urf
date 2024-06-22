@@ -68,4 +68,30 @@ public class StudentController {
 
         return "edit_student";
     }
+
+    // Handler Method for Edit Student Form Submit Request
+    @PostMapping("/students/{studentId}")
+    public String saveStudent(
+            @PathVariable("studentId") Long studentId,
+            @Valid @ModelAttribute("student") StudentDto studentDto,
+            // Use Binding Result to Check Errors and Return the UI
+            BindingResult result,
+            Model model
+    ) {
+        // Check If there is Any Error while Submitting Form
+        if(result.hasErrors()) {
+            // Add StudentDto to the Model
+            model.addAttribute("student", studentDto);
+
+            // Return the Same UI (Create Student Form)
+            return "edit_student";
+        }
+
+        // If there is no Any Error ==> Save Student
+        studentDto.setId(studentId);
+        studentService.updateStudent(studentDto);
+
+        // Return the List Students Page
+        return "redirect:/students";
+    }
 }
