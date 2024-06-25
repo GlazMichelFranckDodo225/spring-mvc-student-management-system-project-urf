@@ -94,4 +94,12 @@ public class StudentController {
         // Return the List Students Page
         return "redirect:/students";
     }
+
+    // Handler Method for Delete Student Request
+    @GetMapping("/students/{studentId}/delete")
+    public String deleteStudent(@PathVariable("studentId") Long studentId, Model model) {
+        studentService.deleteStudentById(studentId);
+
+        return "redirect:/students";
+    }
 }

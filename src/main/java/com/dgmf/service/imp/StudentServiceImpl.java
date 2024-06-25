@@ -44,4 +44,16 @@ public class StudentServiceImpl implements StudentService {
     public void updateStudent(StudentDto studentDto) {
         studentRepository.save(StudentMapper.mapToStudent(studentDto));
     }
+
+    @Override
+    public void deleteStudentById(Long studentId) {
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(
+                        () -> new RuntimeException(
+                                "Student Not Found with Given Id : " + studentId
+                        )
+                );
+
+        studentRepository.delete(student);
+    }
 }
